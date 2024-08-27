@@ -8,10 +8,10 @@ var Pool = require('pg-pool');
     port: 5432
 };*/
 var config = {
-    user: 'pgscse_user',
-    database: 'pgscse',
-    password: 'vkP0DchOI6a50Se6UrWd67jf7h9MggjP',
-    host: 'dpg-cibnjjh5rnuk9q9sfqdg-a.oregon-postgres.render.com',
+    user: 'cris',
+    database: 'db_servicio_vkar',
+    password: 'aCAwjGFnPdjmIIVKcHESL9oufzoiuHri',
+    host: 'dpg-cr6javaj1k6c73d593fg-a.oregon-postgres.render.com',
     port: 5432,
     ssl: true
 };
