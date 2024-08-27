@@ -5,12 +5,7 @@ function Autenticar(requerimiento, respuesta, direccion, path){
 }
 
 function IngresarSistemaUsuario(usuario, respuesta){
-	pool.connect(function(err, client, done){	
-		if (err) {
-			console.error('Error al conectar a la base de datos', err.stack);
-		} else {
-			console.log('Conexión exitosa a la base de datos');
-		}	
+	pool.connect(function(err, client, done){		
 		client.query("SELECT * FROM ingresar_sistema($1,$2)", [usuario.username,usuario.password],function(err,data) {        
         	done();				
 			if(err){ 	 
