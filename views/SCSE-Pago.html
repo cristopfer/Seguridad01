@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>    
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">    
+        <title>SCSE-Profesor</title>     
+        <link href="assets/CSS/SCSE-MP2.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"> 
+    </head>
+    <body>
+        <header> 
+            <div id="cabecero">
+                <div id="Logo-titulo">
+                    <a id="Logo" href="">
+                        <div id="contenedor_imagen" ><img src="assets/images/SeMaslogo_st .png"/></div>
+                        <p class="separacion_elementos_cabecero">Sémás</p>
+                    </a>
+                    <div id="contenedor-titulo"><h2 id="titulo_head">Ventana del profesor</h2></div>
+                </div>
+                <nav>
+                    <a href="SCSE-Buscador.html" ><i class="glyphicon glyphicon-arrow-left"></i> Volver</a>
+                    <a href="SCSE-Login.html" ><i class="glyphicon glyphicon-log-out"></i> Cerrar sesion</a>
+                </nav>
+            </div>
+        </header>
+        <section>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <div class="panel-group">
+                        <div class="panel panel-warning">
+                            <div class="panel-heading" align="center">CONFIRMAR COMPRA</div>
+                            <div class="panel-body" align="center">
+                                <h4 align="center">Rellene los datos de compra</4><br>
+                                <input class="form-control" type="text" id="tarjeta" placeholder="Ingrese el numero de tarjeta"><br><br>
+                                <input class="form-control" type="text" id="correo" placeholder="Correo"><br><br>
+                                <div class="alert alert-warning">Total : 20 soles</div>
+                                <button id="boton" class="btn btn-warning">Realizar compra</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </section>
+        <footer>
+            <div id="contenedor-frase-final"><p>La mejor inversión esta en ti</p></div>
+            <div id="linea-final">
+                <p>2023 SEMAS WEB All Right Reserved.</p>
+                <div id="contenedor-iconos">
+                    <a id="facebook" class="formato-ancla seleccion" href="#"><i class="bi bi-facebook"></i></a>
+                    <a id="youtube" class="formato-ancla seleccion" href="#"><i class="bi bi-youtube"></i></a>
+                    <a id="twitter" class="formato-ancla seleccion" href="#"><i class="bi bi-twitter"></i></a>
+                </div>
+                <a class="formato-ancla seleccion" href="mailto:semas@unmsm.edu.pe">email: semas@unmsm.edu.pe</a>
+            </div>
+        </footer>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.js"></script>
+        <script type="text/javascript">
+            $("#boton").on( "click", function() {
+			    var studentdata = { tarjeta: $("#tarjeta").val(), correo: $("#correo").val()};
+			    $.ajax({  
+      			    url: "/pagarServicio",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) { 
+                        alert("Se realizo el pago respectivo");    			
+      			    }
+    		    });
+            });
+        </script> 
+    </body>
+</html>

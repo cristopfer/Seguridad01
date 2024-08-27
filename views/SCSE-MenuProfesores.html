@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>    
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">     
+        <title>SCSE-Profesor</title>     
+        <link href="assets/CSS/SCSE-MP2.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"> 
+    </head>
+    <body>
+        <header> 
+            <div id="cabecero">
+                <div id="Logo-titulo">
+                    <a id="Logo" href="">
+                        <div id="contenedor_imagen" ><img src="assets/images/SeMaslogo_st .png"/></div>
+                        <p class="separacion_elementos_cabecero">Sémás</p>
+                    </a>
+                    <div id="contenedor-titulo"><h2 id="titulo_head">Actualiza tus datos</h2></div>
+                </div>
+                <nav>
+                    <a href="SCSE-Buscador.html" ><i class="glyphicon glyphicon-log-in"></i> Ir a cursos</a>
+                    <a href="SCSE-Login.html" ><i class="glyphicon glyphicon-log-out"></i> Cerrar sesion</a>
+                </nav>
+            </div>
+        </header><br>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-3">
+                <img src="assets/images/usuprofesor.png" width="300" height="300" alt="logo">                
+            </div>
+            <div class="col-md-5">
+                <div class="alert alert-warning"><h3>Datos del profesor</h3></div>
+                <div class="alert alert-success">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2">Nombre: </div>
+                        <div class="col-md-8"><input class="form-control" type="text" id="nombreProfesor"></div>
+                        <div class="col-md-1"></div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2">Apellido: </div>
+                        <div class="col-md-8"><input class="form-control" type="text" id="apellidoProfesor"></div>
+                        <div class="col-md-1"></div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2">Correo: </div>
+                        <div class="col-md-8"><input class="form-control" type="text" id="correoProfesor"></div>
+                        <div class="col-md-1"></div>
+                    </div><br>  
+                    <div class="row">
+                        <div class="col-md-5"></div>
+                        <div class="col-md-3"><button class="btn btn-info" id="editar1">Editar</button></div>
+                        <div class="col-md-3"><button class="btn btn-success" id="actualizar1">Actualizar</button></div>
+                        <div class="col-md-1"></div>
+                    </div><br>          
+                </div>
+            </div>
+            <div class="col-md-2"></div>            
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div> 
+            <div class="col-md-8">
+                <div class="alert alert-warning"><h3>Datos del curso</h3></div>
+                <div class="alert alert-success">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">Area de enseñanza: </div>
+                        <div class="col-md-7">
+                            <select class="form-select" aria-label="Default select example">
+                                <option value="Aritmetica">Aritmetica</option>
+                                <option value="Algebra">Algebra</option>
+                                <option value="Base de datos">Base de datos</option>
+                                <option value="Biologia">Biologia</option>
+                                <option value="Calculo">Calculo</option>
+                                <option value="Desarrollo Web">Desarrollo Web</option>
+                                <option value="Fisica">Fisica</option>
+                                <option value="Historia">Historia</option>
+                                <option value="Lenguaje">Lenguaje</option>
+                                <option value="Tesis">Tesis</option>
+                                <option value="Quimica">Quimica</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">Descripcion: </div>
+                        <div class="col-md-7"><input class="form-control" type="text" id="descripcionProfesor"></div>
+                        <div class="col-md-1"></div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-md-5"></div>
+                        <div class="col-md-3"><button class="btn btn-info" id="editar2">Editar</button></div>
+                        <div class="col-md-3"><button class="btn btn-success" id="actualizar2">Actualizar</button></div>
+                        <div class="col-md-1"></div>
+                    </div><br> 
+                </div>
+            </div> 
+            <div class="col-md-2"></div> 
+        </div><br>
+        </div><br>
+        <div class="row" id='enviarMensaje'>
+            <div class="col-md-2"></div> 
+            <div class="col-md-4" >
+                <input class="form-control" type="text" id="mensaje" placeholder="Envie un mensaje privado">
+            </div> 
+            <div class="col-md-2"><button class="btn btn-info" id="enviarMen">Enviar</button></div> 
+            <div class="col-md-2"></div> 
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row"><br>
+            <div class="col-md-2"></div> 
+            <div class="col-md-8" id='resultado'></div> 
+            <div class="col-md-2"></div> 
+        </div>
+        
+        <footer>
+            <div id="contenedor-frase-final"><p>La mejor inversión esta en ti</p></div>
+            <div id="linea-final">
+                <p>2023 SEMAS WEB All Right Reserved.</p>
+                <div id="contenedor-iconos">
+                    <a id="facebook" class="formato-ancla seleccion" href="#"><i class="bi bi-facebook"></i></a>
+                    <a id="youtube" class="formato-ancla seleccion" href="#"><i class="bi bi-youtube"></i></a>
+                    <a id="twitter" class="formato-ancla seleccion" href="#"><i class="bi bi-twitter"></i></a>
+                </div>
+                <a class="formato-ancla seleccion" href="mailto:semas@unmsm.edu.pe">email: semas@unmsm.edu.pe</a>
+            </div>
+        </footer>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.js"></script>
+        <script type="text/javascript">
+            var valor; 
+            $("#enviarMensaje").hide();
+            $("#nombreProfesor").prop( "disabled", true );
+            $("#apellidoProfesor").prop( "disabled", true );
+            $("#correoProfesor").prop( "disabled", true );
+            $('select').prop( "disabled", true );
+            $("#descripcionProfesor").prop( "disabled", true );
+            $.ajax({  
+      			url: "/usuarioLogueado",  
+      			dataType: 'json',  
+      			type: 'POST',   
+      			success: function(data) { 
+                    $("#nombre").text(data[0].nom);
+                    $("#apellido").text(data[0].ape);	
+                    $.ajax({  
+      			        url: "/consultarProfesorLogueado",  
+      			        dataType: 'json',  
+      			        type: 'POST',   
+      			        success: function(data) { 
+                            $("#nombreProfesor").val(data[0].nom);
+                            $("#apellidoProfesor").val(data[0].ape);	
+                            $("#correoProfesor").val(data[0].cor);
+                            $('select').val(data[0].curs);
+                            $("#descripcionProfesor").val(data[0].descrip);	
+                            var consulta = "";
+                            $("#resultado").empty();
+			                $.ajax({             
+      			                url: "/verMensajesPrivados",  
+      			                dataType: 'json',  
+      			                type: 'POST',  
+      			                success: function(data) {                                                                                                              
+                                    for(var i = 0; i < data.length; i++)
+                                        consulta +='<div class="alert alert-info" align="center"><div class="row"><div class="col-md-3">'+data[i].nomusu+': </div><div class="col-md-3">'+data[i].descrip+' </div><div class="col-md-3">fecha:'+data[i].fec+'</div><div class="col-md-2"><button class="btn btn-info" id="ver">Enviar mensaje</button></div><div class="col-md-1" hidden>'+data[i].idusu+'</div></div></div>';                                                                                           
+                                    $("#resultado").append(consulta);	
+                                    $("#ver").on('click',function(){    
+                                        $("#enviarMensaje").show();
+                                        var currentRow=$(this).closest("div.row");
+                                        var col1=currentRow.find("div:eq(4)").html();
+                                        valor = col1;
+                                    });	                                   	
+      			                }
+    		                });
+      			        }
+    		        });	
+      			}
+    		});           
+            $("#editar1").on( "click", function() {
+			    $("#nombreProfesor").prop( "disabled", false );
+                $("#apellidoProfesor").prop( "disabled", false );
+                $("#correoProfesor").prop( "disabled", false );
+            });
+            $("#actualizar1").on( "click", function() {
+                var studentdata = { nombre: $("#nombreProfesor").val(), apellido: $("#apellidoProfesor").val(), correo: $("#correoProfesor").val()};
+			    $.ajax({  
+      			    url: "/actualizarDatosProfesor",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) { 
+      				    alert("Se actualizo los datos del profesor");		
+      			    }
+    		    });
+			    $("#nombreProfesor").prop( "disabled", true );
+                $("#apellidoProfesor").prop( "disabled", true );
+                $("#correoProfesor").prop( "disabled", true );
+            });
+            $("#editar2").on( "click", function() {
+			    $('select').prop( "disabled", false );
+                $("#descripcionProfesor").prop( "disabled", false );
+            });
+            $("#actualizar2").on( "click", function() {
+                var studentdata = { curso: $('select').val(), descripcion: $("#descripcionProfesor").val()};
+			    $.ajax({  
+      			    url: "/actualizarCurso",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) { 
+      				    alert("Se actualizo los datos del curso");		
+      			    }
+    		    });
+			    $('select').prop( "disabled", true );
+                $("#descripcionProfesor").prop( "disabled", true );
+            });
+            $("#enviarMen").on('click',function(){                   
+                var studentdata = { idusu: valor, mensaje: $("#mensaje").val(), tipo: 2};                                 
+			    $.ajax({  
+      			    url: "/mensajePrivadoProfesor",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) { 
+      				    alert("Se actualizo los datos del curso");		
+      			    }
+    		    });
+                $("#enviarMensaje").hide();
+            });           
+        </script>
+    </body>
+</html>

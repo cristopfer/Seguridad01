@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>    
+    <head>    
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">    
+        <title>SCSE-Profesor</title>     
+        <link href="assets/CSS/SCSE-MP2.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"> 
+    </head>    
+    <body>
+        <header> 
+            <div id="cabecero">
+                <div id="Logo-titulo">
+                    <a id="Logo" href="">
+                        <div id="contenedor_imagen" ><img src="assets/images/SeMaslogo_st .png"/></div>
+                        <p class="separacion_elementos_cabecero">Sémás</p>
+                    </a>
+                    <div id="contenedor-titulo"><h2 id="titulo_head">Ventana del profesor</h2></div>
+                </div>
+                <nav>
+                    <a href="SCSE-Buscador.html" ><i class="glyphicon glyphicon-arrow-left"></i> Volver</a>
+                    <a href="SCSE-Login.html" ><i class="glyphicon glyphicon-log-out"></i> Cerrar sesion</a>
+                </nav>
+            </div>
+        </header> 
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-3">
+                <img src="assets/images/profesor.png" width="180" height="180" alt="logo"><br>
+                <div class="row">
+                    <div class="col-md-4">Calificacion: </div>
+                    <div class="col-md-4"><input class="form-control" type="text" id="puntuacion" placeholder="1-100"></div>
+                    <div class="col-md-4"><button class="btn btn-success" id="calificar">Calificar</button></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">Personas que calificaron: </div><br>
+                    <div class="col-md-2"><p id="calificados"></p> </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="alert alert-warning"><h3>Datos del profesor</h3></div>
+                <div class="alert alert-success">
+                    <p id="nombreProfesor"></p>
+                    <p id="apellidoProfesor"></p>
+                    <p id="correoProfesor"></p><br>
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Enviar mensaje</button>
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Mensaje Privado</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12" align="center">
+                                            <img src="assets/images/profesor.png" width="180" height="180" alt="logo"><br>
+                                            <div class="row">
+                                                <div class="col-md-4"></div>
+                                                <div class="col-md-2"><h3 id="nombre1"></h3></div>
+                                                <div class="col-md-2"><h3 id="apellido1"></h3></div>
+                                                <div class="col-md-4"></div>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12" id="mostrarMensajes"></div>
+                                    </div>
+                                    <input class="form-control" type="text" id="mensaje" placeholder="Envie un mensaje privado">
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-3"><button type="button" class="btn btn-success" id="privado">Enviar</button></div>
+                                        <div class="col-md-3"><button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button></div>
+                                        <div class="col-md-4"></div>
+                                    </div>                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>            
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div> 
+            <div class="col-md-8">
+                <div class="alert alert-warning"><h3>Datos del curso</h3></div>
+                <div class="alert alert-success">
+                    <p id="curso"></p>
+                    <p id="descripcionProfesor"></p>
+                </div>
+            </div> 
+            <div class="col-md-2"></div> 
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-6"></div>
+            <div class="col-md-2"><button class="btn btn-success" id="pago">Adquirir curso</button></div>
+            <div class="col-md-2"></div>
+        </div><br>
+        <div class="row">
+            <div class="col-md-2"></div> 
+            <div class="col-md-2">Comentario: </div> 
+            <div class="col-md-4"><input class="form-control" type="text" id="comentar" placeholder="Agregue un comentario"></div>
+            <div class="col-md-2"><button class="btn btn-success" id="enviar">Enviar comentario</button></div> 
+            <div class="col-md-2"></div>
+        </div><br>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8" id='resultado'>
+
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <footer>
+            <div id="contenedor-frase-final"><p>La mejor inversión esta en ti</p></div>
+            <div id="linea-final">
+                <p>2023 SEMAS WEB All Right Reserved.</p>
+                <div id="contenedor-iconos">
+                    <a id="facebook" class="formato-ancla seleccion" href="#"><i class="bi bi-facebook"></i></a>
+                    <a id="youtube" class="formato-ancla seleccion" href="#"><i class="bi bi-youtube"></i></a>
+                    <a id="twitter" class="formato-ancla seleccion" href="#"><i class="bi bi-twitter"></i></a>
+                </div>
+                <a class="formato-ancla seleccion" href="mailto:semas@unmsm.edu.pe">email: semas@unmsm.edu.pe</a>
+            </div>
+        </footer>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            $.ajax({  
+      			url: "/usuarioLogueado",  
+      			dataType: 'json',  
+      			type: 'POST',   
+      			success: function(data) { 
+                    $("#nombre").text(data[0].nom);
+                    $("#apellido").text(data[0].ape);		
+      			}
+    		});
+            $.ajax({  
+      			url: "/consultarProfesor",  
+      			dataType: 'json',  
+      			type: 'POST',   
+      			success: function(data) { 
+                    $("#nombre1").text(data[0].nom);
+                    $("#apellido1").text(data[0].ape);
+                    $("#nombreProfesor").text("Nombre: "+data[0].nom);
+                    $("#apellidoProfesor").text("Apellido: "+data[0].ape);	
+                    $("#correoProfesor").text("Correo: "+data[0].cor);
+                    $("#curso").text("Curso: "+data[0].curs);
+                    $("#descripcionProfesor").text("Descripcion: "+data[0].descrip);
+                    $("#calificados").text(data[0].vistado);
+      			}
+    		});
+            var consulta1 = "";
+            $("#mostrarMensajes").empty();
+			$.ajax({             
+      			url: "/listadoMensajesProfesor",  
+      			dataType: 'json',  
+      			type: 'POST',  
+      			success: function(data) {                                   
+                    for(var i = 0; i < data.length; i++){
+                        if(data[i].tip == 1)
+                            consulta1 +='<div class="alert alert-success">'+data[i].descrip+'</div>';
+                        else
+                            consulta1 +='<div class="alert alert-info">'+data[i].descrip+'</div>';
+                    }                      
+                    $("#mostrarMensajes").append(consulta1);		
+      			}
+    		});
+            var consulta = "";
+            $("#resultado").empty();
+			$.ajax({             
+      			url: "/listadoComentarioProfesor",  
+      			dataType: 'json',  
+      			type: 'POST',  
+      			success: function(data) {                                         
+                    for(var i = 0; i < data.length; i++)
+                        consulta +='<div class="alert alert-info">'+data[i].descrip+'</div>';                       
+                    $("#resultado").append(consulta);		
+      			}
+    		});
+            $("#calificar").on( "click", function() {
+			    var studentdata = { puntos: $("#puntuacion").val()};
+			    $.ajax({  
+      			    url: "/calificar",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) { 
+                        $("#calificados").text(data[0].calificar_profesor);
+      				    alert("Se califico al profesor");		
+      			    }
+    		    });
+            });
+            $("#enviar").on( "click", function() {
+			    var studentdata = { comentario: $("#comentar").val()};
+			    $.ajax({  
+      			    url: "/comentar",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) { 
+      				    alert("Se envio el comentario al profesor");
+                        var consulta = "";
+                        $("#resultado").empty();
+			            $.ajax({             
+      			            url: "/listadoComentarioProfesor",  
+      			            dataType: 'json',  
+      			            type: 'POST',  
+      			            success: function(data) {                                         
+                                for(var i = 0; i < data.length; i++)
+                                    consulta +='<div class="alert alert-info">'+data[i].descrip+'</div>';                       
+                                $("#resultado").append(consulta);		
+      			            }
+    		            });		
+      			    }
+    		    });
+                
+            });
+            $("#privado").on( "click", function() {
+			    var studentdata = { mensaje: $("#mensaje").val(), tipo: 1};
+			    $.ajax({  
+      			    url: "/mensaje",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) { 
+      				    alert("Se envio el mensaje privado al profesor");
+                        var consulta = "";
+                        $("#mostrarMensajes").empty();
+			            $.ajax({             
+      			            url: "/listadoMensajesProfesor",  
+      			            dataType: 'json',  
+      			            type: 'POST',  
+      			            success: function(data) {                                         
+                                for(var i = 0; i < data.length; i++){
+                                    if(data[i].tip == 1)
+                                        consulta +='<div class="alert alert-success">'+data[i].descrip+'</div>';
+                                    else
+                                        consulta +='<div class="alert alert-info">'+data[i].descrip+'</div>';
+                                }                      
+                                $("#mostrarMensajes").append(consulta);		
+      			            }
+    		            });		
+      			    }
+    		    });
+            });
+            $("#pago").on( "click", function() {
+			    location.href='SCSE-Pago.html';
+            });
+        </script> 
+    </body>    
+</html>

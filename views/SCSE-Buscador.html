@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>    
+    <head>    
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SCSE-MenuProfesores-2</title>
+        <link href="assets/CSS/SCSE-MP2.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">     
+    </head>    
+    <body> 
+        <header> 
+            <div id="cabecero">
+                <div id="Logo-titulo">
+                    <a id="Logo" href="">
+                        <div id="contenedor_imagen" ><img src="assets/images/SeMaslogo_st .png"/></div>
+                        <p class="separacion_elementos_cabecero">Sémás</p>
+                    </a>
+                    <div id="contenedor-titulo"><h2 id="titulo_head">Cursos disponibles</h2></div>
+                </div>
+                <nav>
+                    <a href="" ><i class="glyphicon glyphicon-log-in"></i> Ofrecer curso</a>
+                    <a href="SCSE-Login.html" ><i class="glyphicon glyphicon-log-out"></i> Cerrar sesion</a>
+                </nav>
+            </div>
+        </header>       
+        <section id="cuerpo">
+            <div id="Frase-adicional"><h2>¿Que elegiras hoy </h2><h2 id="nombre"> </h2><h2 id="apellido"> </h2><h2>?</h2></div>
+            <div id="contenedor-bienvenido"><h1>Bienvenido!!!</h1></div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8" id='resultado'>
+    
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div id="panel-etiquetas"> 
+                <div class="espaciado_etiquetas">
+                    <a href="#" id="Aritmetica">Aritmetica</a>
+                    <a href="#" id="Biologia">Biologia</a>
+                    <a href="#" id="Historia">Historia</a>
+                </div>
+                <div class="espaciado_etiquetas">
+                    <a href="#" id="Algebra">Algebra</a>
+                    <a href="#" id="Calculo">Calculo</a>
+                    <a href="#" id="Lenguaje">Lenguaje</a>
+                </div>
+                <div class="espaciado_etiquetas">
+                    <a href="#" id="Algoritmica">Algoritmica</a>
+                    <a href="#" id="Desarrollo">Desarrollo web</a>
+                    <a href="#" id="Tesis">Tesis</a>
+                </div>
+                <div class="espaciado_etiquetas">
+                    <a href="#" id="BaseDeDatos">Base de datos</a>
+                    <a href="#" id="Fisica">Fisica</a>
+                    <a href="#" id="Quimica">Quimica</a>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div id="contenedor-frase-final"><p>La mejor inversión esta en ti</p></div>
+            <div id="linea-final">
+                <p>2023 SEMAS WEB All Right Reserved.</p>
+                <div id="contenedor-iconos">
+                    <a id="facebook" class="formato-ancla seleccion" href="#"><i class="bi bi-facebook"></i></a>
+                    <a id="youtube" class="formato-ancla seleccion" href="#"><i class="bi bi-youtube"></i></a>
+                    <a id="twitter" class="formato-ancla seleccion" href="#"><i class="bi bi-twitter"></i></a>
+                </div>
+                <a class="formato-ancla seleccion" href="mailto:semas@unmsm.edu.pe">email: semas@unmsm.edu.pe</a>
+            </div>
+        </footer> 
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.js"></script>
+        <script type="text/javascript">
+			$.ajax({  
+      			url: "/usuarioLogueado",  
+      			dataType: 'json',  
+      			type: 'POST',   
+      			success: function(data) { 
+                    $("#nombre").text(data[0].nom);
+                    $("#apellido").text(data[0].ape);		
+      			}
+    		});
+            $("#Algebra").on( "click", function() {      
+                var studentdata = { curso: "Algebra"};
+                var consulta = "";
+                $("#resultado").empty();
+			    $.ajax({  
+      			    url: "/listadoCursosProfesor",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) {                        
+                        for(var i = 0; i < data.length; i++)
+                            consulta +='<div class="alert alert-success"><div class="row"><div class="col-md-2"><img src="assets/images/compas.png" width="60" height="60" alt="logo"> </div><div class="col-md-6"><p>Nombre del profesor:'+data[i].nom+' '+data[i].ape+'</p><p>Curso:'+data[i].curs+'</p><p>Descripcion:'+data[i].descrip+'</p><p>Calificacion:'+data[i].cali+'</p><p>Personas que calificaron:'+data[i].vistas+'</p></div><div class="col-md-1" hidden>'+data[i].idpro+'</div><div class="col-md-3"><p>Precio:'+data[i].prec+'</p><p><button class="btn btn-info" id="ver">Apuntarse al curso</button></p></div></div></div>';                        
+                        $("#resultado").append(consulta);	
+                        $("button").on('click',function(){    
+                            var currentRow=$(this).closest("div.row");
+                            var col1=currentRow.find("div:eq(2)").html();
+                            var studentdata = { idprofesor: col1};
+                            $.ajax({  
+      			                url: "/obtenerIdProfesor",  
+      			                dataType: 'json',  
+      			                type: 'POST',  
+      			                data: studentdata,  
+      			                success: function(data) { 
+                                    location.href='SCSE-Profesor.html';
+      			                }
+    		                });
+                        });		
+      			    }
+    		    });
+            });
+            $("#Aritmetica").on( "click", function() {      
+                var studentdata = { curso: "Aritmetica"};
+                var consulta = "";
+                $("#resultado").empty();
+			    $.ajax({  
+      			    url: "/listadoCursosProfesor",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) {                        
+                        for(var i = 0; i < data.length; i++)
+                            consulta +='<div class="alert alert-success"><div class="row"><div class="col-md-2"><img src="assets/images/compas.png" width="60" height="60" alt="logo"> </div><div class="col-md-6"><p>Nombre del profesor:'+data[i].nom+' '+data[i].ape+'</p><p>Curso:'+data[i].curs+'</p><p>Descripcion:'+data[i].descrip+'</p><p>Calificacion:'+data[i].cali+'</p><p>Personas que calificaron:'+data[i].vistas+'</p></div><div class="col-md-1" hidden>'+data[i].idpro+'</div><div class="col-md-3"><p>Precio:'+data[i].prec+'</p><p><button class="btn btn-info" id="ver">Apuntarse al curso</button></p></div></div></div>';                        
+                        $("#resultado").append(consulta);	
+                        $("button").on('click',function(){    
+                            var currentRow=$(this).closest("div.row");
+                            var col1=currentRow.find("div:eq(2)").html();
+                            var studentdata = { idprofesor: col1};
+                            $.ajax({  
+      			                url: "/obtenerIdProfesor",  
+      			                dataType: 'json',  
+      			                type: 'POST',  
+      			                data: studentdata,  
+      			                success: function(data) { 
+                                    location.href='SCSE-Profesor.html';
+      			                }
+    		                });
+                        });		
+      			    }
+    		    });
+            });
+            $("#Calculo").on( "click", function() {
+                var studentdata = { curso: "Calculo"};
+                var consulta = "";
+                $("#resultado").empty();
+			    $.ajax({  
+      			    url: "/listadoCursosProfesor",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) {                        
+                        for(var i = 0; i < data.length; i++)
+                            consulta +='<div class="alert alert-success"><div class="row"><div class="col-md-2"><img src="assets/images/compas.png" width="60" height="60" alt="logo"> </div><div class="col-md-6"><p>Nombre del profesor:'+data[i].nom+' '+data[i].ape+'</p><p>Curso:'+data[i].curs+'</p><p>Descripcion:'+data[i].descrip+'</p><p>Calificacion:'+data[i].cali+'</p><p>Personas que calificaron:'+data[i].vistas+'</p></div><div class="col-md-1" hidden>'+data[i].idpro+'</div><div class="col-md-3"><p>Precio:'+data[i].prec+'</p><p><button class="btn btn-info" id="ver">Apuntarse al curso</button></p></div></div></div>';
+                        $("#resultado").append(consulta);	
+                        $("button").on('click',function(){    
+                            var currentRow=$(this).closest("div.row");
+                            var col1=currentRow.find("div:eq(2)").html();
+                            var studentdata = { idprofesor: col1};
+                            $.ajax({  
+      			                url: "/obtenerIdProfesor",  
+      			                dataType: 'json',  
+      			                type: 'POST',  
+      			                data: studentdata,  
+      			                success: function(data) { 
+                                    location.href='SCSE-Profesor.html';
+      			                }
+    		                });
+                        });		
+      			    }
+    		    });
+            });
+            $("#Biologia").on( "click", function() {
+                var studentdata = { curso: "Biologia"};
+                var consulta = "";
+                $("#resultado").empty();
+			    $.ajax({  
+      			    url: "/listadoCursosProfesor",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) {                        
+                        for(var i = 0; i < data.length; i++)
+                            consulta +='<div class="alert alert-success"><div class="row"><div class="col-md-2"><img src="assets/images/compas.png" width="60" height="60" alt="logo"> </div><div class="col-md-6"><p>Nombre del profesor:'+data[i].nom+' '+data[i].ape+'</p><p>Curso:'+data[i].curs+'</p><p>Descripcion:'+data[i].descrip+'</p><p>Calificacion:'+data[i].cali+'</p><p>Personas que calificaron:'+data[i].vistas+'</p></div><div class="col-md-1" hidden>'+data[i].idpro+'</div><div class="col-md-3"><p>Precio:'+data[i].prec+'</p><p><button class="btn btn-info" id="ver">Apuntarse al curso</button></p></div></div></div>';
+                        $("#resultado").append(consulta);
+                        $("button").on('click',function(){    
+                            var currentRow=$(this).closest("div.row");
+                            var col1=currentRow.find("div:eq(2)").html();
+                            var studentdata = { idprofesor: col1};
+                            $.ajax({  
+      			                url: "/obtenerIdProfesor",  
+      			                dataType: 'json',  
+      			                type: 'POST',  
+      			                data: studentdata,  
+      			                success: function(data) { 
+                                    location.href='SCSE-Profesor.html';
+      			                }
+    		                });
+                        });			
+      			    }
+    		    });
+            });  
+            $("#Historia").on( "click", function() {
+                var studentdata = { curso: "Historia"};
+                var consulta = "";
+                $("#resultado").empty();
+			    $.ajax({  
+      			    url: "/listadoCursosProfesor",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) {                        
+                        for(var i = 0; i < data.length; i++)
+                            consulta +='<div class="alert alert-success"><div class="row"><div class="col-md-2"><img src="assets/images/compas.png" width="60" height="60" alt="logo"> </div><div class="col-md-6"><p>Nombre del profesor:'+data[i].nom+' '+data[i].ape+'</p><p>Curso:'+data[i].curs+'</p><p>Descripcion:'+data[i].descrip+'</p><p>Calificacion:'+data[i].cali+'</p><p>Personas que calificaron:'+data[i].vistas+'</p></div><div class="col-md-1" hidden>'+data[i].idpro+'</div><div class="col-md-3"><p>Precio:'+data[i].prec+'</p><p><button class="btn btn-info" id="ver">Apuntarse al curso</button></p></div></div></div>';
+                        $("#resultado").append(consulta);
+                        $("button").on('click',function(){    
+                            var currentRow=$(this).closest("div.row");
+                            var col1=currentRow.find("div:eq(2)").html();
+                            var studentdata = { idprofesor: col1};
+                            $.ajax({  
+      			                url: "/obtenerIdProfesor",  
+      			                dataType: 'json',  
+      			                type: 'POST',  
+      			                data: studentdata,  
+      			                success: function(data) { 
+                                    location.href='SCSE-Profesor.html';
+      			                }
+    		                });
+                        });			
+      			    }
+    		    });
+            }); 
+            $("#Lenguaje").on( "click", function() {
+                var studentdata = { curso: "Lenguaje"};
+                var consulta = "";
+                $("#resultado").empty();
+			    $.ajax({  
+      			    url: "/listadoCursosProfesor",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) {                        
+                        for(var i = 0; i < data.length; i++)
+                            consulta +='<div class="alert alert-success"><div class="row"><div class="col-md-2"><img src="assets/images/compas.png" width="60" height="60" alt="logo"> </div><div class="col-md-6"><p>Nombre del profesor:'+data[i].nom+' '+data[i].ape+'</p><p>Curso:'+data[i].curs+'</p><p>Descripcion:'+data[i].descrip+'</p><p>Calificacion:'+data[i].cali+'</p><p>Personas que calificaron:'+data[i].vistas+'</p></div><div class="col-md-1" hidden>'+data[i].idpro+'</div><div class="col-md-3"><p>Precio:'+data[i].prec+'</p><p><button class="btn btn-info" id="ver">Apuntarse al curso</button></p></div></div></div>';
+                        $("#resultado").append(consulta);
+                        $("button").on('click',function(){    
+                            var currentRow=$(this).closest("div.row");
+                            var col1=currentRow.find("div:eq(2)").html();
+                            var studentdata = { idprofesor: col1};
+                            $.ajax({  
+      			                url: "/obtenerIdProfesor",  
+      			                dataType: 'json',  
+      			                type: 'POST',  
+      			                data: studentdata,  
+      			                success: function(data) { 
+                                    location.href='SCSE-Profesor.html';
+      			                }
+    		                });
+                        });			
+      			    }
+    		    });
+            });  
+            $("#Algoritmica").on( "click", function() {
+                var studentdata = { curso: "Algoritmica"};
+                var consulta = "";
+                $("#resultado").empty();
+			    $.ajax({  
+      			    url: "/listadoCursosProfesor",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) {                        
+                        for(var i = 0; i < data.length; i++)
+                            consulta +='<div class="alert alert-success"><div class="row"><div class="col-md-2"><img src="assets/images/compas.png" width="60" height="60" alt="logo"> </div><div class="col-md-6"><p>Nombre del profesor:'+data[i].nom+' '+data[i].ape+'</p><p>Curso:'+data[i].curs+'</p><p>Descripcion:'+data[i].descrip+'</p><p>Calificacion:'+data[i].cali+'</p><p>Personas que calificaron:'+data[i].vistas+'</p></div><div class="col-md-1" hidden>'+data[i].idpro+'</div><div class="col-md-3"><p>Precio:'+data[i].prec+'</p><p><button class="btn btn-info" id="ver">Apuntarse al curso</button></p></div></div></div>';
+                        $("#resultado").append(consulta);
+                        $("button").on('click',function(){    
+                            var currentRow=$(this).closest("div.row");
+                            var col1=currentRow.find("div:eq(2)").html();
+                            var studentdata = { idprofesor: col1};
+                            $.ajax({  
+      			                url: "/obtenerIdProfesor",  
+      			                dataType: 'json',  
+      			                type: 'POST',  
+      			                data: studentdata,  
+      			                success: function(data) { 
+                                    location.href='SCSE-Profesor.html';
+      			                }
+    		                });
+                        });			
+      			    }
+    		    });
+            });
+            $("#Desarrollo").on( "click", function() {
+                var studentdata = { curso: "Desarrollo Web"};
+                var consulta = "";
+                $("#resultado").empty();
+			    $.ajax({  
+      			    url: "/listadoCursosProfesor",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) {                        
+                        for(var i = 0; i < data.length; i++)
+                            consulta +='<div class="alert alert-success"><div class="row"><div class="col-md-2"><img src="assets/images/compas.png" width="60" height="60" alt="logo"> </div><div class="col-md-6"><p>Nombre del profesor:'+data[i].nom+' '+data[i].ape+'</p><p>Curso:'+data[i].curs+'</p><p>Descripcion:'+data[i].descrip+'</p><p>Calificacion:'+data[i].cali+'</p><p>Personas que calificaron:'+data[i].vistas+'</p></div><div class="col-md-1" hidden>'+data[i].idpro+'</div><div class="col-md-3"><p>Precio:'+data[i].prec+'</p><p><button class="btn btn-info" id="ver">Apuntarse al curso</button></p></div></div></div>';
+                        $("#resultado").append(consulta);
+                        $("button").on('click',function(){    
+                            var currentRow=$(this).closest("div.row");
+                            var col1=currentRow.find("div:eq(2)").html();
+                            var studentdata = { idprofesor: col1};
+                            $.ajax({  
+      			                url: "/obtenerIdProfesor",  
+      			                dataType: 'json',  
+      			                type: 'POST',  
+      			                data: studentdata,  
+      			                success: function(data) { 
+                                    location.href='SCSE-Profesor.html';
+      			                }
+    		                });
+                        });			
+      			    }
+    		    });
+            });
+            $("#Tesis").on( "click", function() {
+                var studentdata = { curso: "Tesis"};
+                var consulta = "";
+                $("#resultado").empty();
+			    $.ajax({  
+      			    url: "/listadoCursosProfesor",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) {                        
+                        for(var i = 0; i < data.length; i++)
+                            consulta +='<div class="alert alert-success"><div class="row"><div class="col-md-2"><img src="assets/images/compas.png" width="60" height="60" alt="logo"> </div><div class="col-md-6"><p>Nombre del profesor:'+data[i].nom+' '+data[i].ape+'</p><p>Curso:'+data[i].curs+'</p><p>Descripcion:'+data[i].descrip+'</p><p>Calificacion:'+data[i].cali+'</p><p>Personas que calificaron:'+data[i].vistas+'</p></div><div class="col-md-1" hidden>'+data[i].idpro+'</div><div class="col-md-3"><p>Precio:'+data[i].prec+'</p><p><button class="btn btn-info" id="ver">Apuntarse al curso</button></p></div></div></div>';
+                        $("#resultado").append(consulta);
+                        $("button").on('click',function(){    
+                            var currentRow=$(this).closest("div.row");
+                            var col1=currentRow.find("div:eq(2)").html();
+                            var studentdata = { idprofesor: col1};
+                            $.ajax({  
+      			                url: "/obtenerIdProfesor",  
+      			                dataType: 'json',  
+      			                type: 'POST',  
+      			                data: studentdata,  
+      			                success: function(data) { 
+                                    location.href='SCSE-Profesor.html';
+      			                }
+    		                });
+                        });			
+      			    }
+    		    });
+            }); 
+            $("#BaseDeDatos").on( "click", function() {
+                var studentdata = { curso: "Base de Datos"};
+                var consulta = "";
+                $("#resultado").empty();
+			    $.ajax({  
+      			    url: "/listadoCursosProfesor",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) {                        
+                        for(var i = 0; i < data.length; i++)
+                            consulta +='<div class="alert alert-success"><div class="row"><div class="col-md-2"><img src="assets/images/compas.png" width="60" height="60" alt="logo"> </div><div class="col-md-6"><p>Nombre del profesor:'+data[i].nom+' '+data[i].ape+'</p><p>Curso:'+data[i].curs+'</p><p>Descripcion:'+data[i].descrip+'</p><p>Calificacion:'+data[i].cali+'</p><p>Personas que calificaron:'+data[i].vistas+'</p></div><div class="col-md-1" hidden>'+data[i].idpro+'</div><div class="col-md-3"><p>Precio:'+data[i].prec+'</p><p><button class="btn btn-info" id="ver">Apuntarse al curso</button></p></div></div></div>';
+                        $("#resultado").append(consulta);
+                        $("button").on('click',function(){    
+                            var currentRow=$(this).closest("div.row");
+                            var col1=currentRow.find("div:eq(2)").html();
+                            var studentdata = { idprofesor: col1};
+                            $.ajax({  
+      			                url: "/obtenerIdProfesor",  
+      			                dataType: 'json',  
+      			                type: 'POST',  
+      			                data: studentdata,  
+      			                success: function(data) { 
+                                    location.href='SCSE-Profesor.html';
+      			                }
+    		                });
+                        });			
+      			    }
+    		    });
+            });
+            $("#Fisica").on( "click", function() {
+                var studentdata = { curso: "Fisica"};
+                var consulta = "";
+                $("#resultado").empty();
+			    $.ajax({  
+      			    url: "/listadoCursosProfesor",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) {                        
+                        for(var i = 0; i < data.length; i++)
+                            consulta +='<div class="alert alert-success"><div class="row"><div class="col-md-2"><img src="assets/images/compas.png" width="60" height="60" alt="logo"> </div><div class="col-md-6"><p>Nombre del profesor:'+data[i].nom+' '+data[i].ape+'</p><p>Curso:'+data[i].curs+'</p><p>Descripcion:'+data[i].descrip+'</p><p>Calificacion:'+data[i].cali+'</p><p>Personas que calificaron:'+data[i].vistas+'</p></div><div class="col-md-1" hidden>'+data[i].idpro+'</div><div class="col-md-3"><p>Precio:'+data[i].prec+'</p><p><button class="btn btn-info" id="ver">Apuntarse al curso</button></p></div></div></div>';
+                        $("#resultado").append(consulta);
+                        $("button").on('click',function(){    
+                            var currentRow=$(this).closest("div.row");
+                            var col1=currentRow.find("div:eq(2)").html();
+                            var studentdata = { idprofesor: col1};
+                            $.ajax({  
+      			                url: "/obtenerIdProfesor",  
+      			                dataType: 'json',  
+      			                type: 'POST',  
+      			                data: studentdata,  
+      			                success: function(data) { 
+                                    location.href='SCSE-Profesor.html';
+      			                }
+    		                });
+                        });			
+      			    }
+    		    });
+            });
+            $("#Quimica").on( "click", function() {
+                var studentdata = { curso: "Quimica"};
+                var consulta = "";
+                $("#resultado").empty();
+			    $.ajax({  
+      			    url: "/listadoCursosProfesor",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) {                        
+                        for(var i = 0; i < data.length; i++)
+                            consulta +='<div class="alert alert-success"><div class="row"><div class="col-md-2"><img src="assets/images/compas.png" width="60" height="60" alt="logo"> </div><div class="col-md-6"><p>Nombre del profesor:'+data[i].nom+' '+data[i].ape+'</p><p>Curso:'+data[i].curs+'</p><p>Descripcion:'+data[i].descrip+'</p><p>Calificacion:'+data[i].cali+'</p><p>Personas que calificaron:'+data[i].vistas+'</p></div><div class="col-md-1" hidden>'+data[i].idpro+'</div><div class="col-md-3"><p>Precio:'+data[i].prec+'</p><p><button class="btn btn-info" id="ver">Apuntarse al curso</button></p></div></div></div>';
+                        $("#resultado").append(consulta);
+                        $("button").on('click',function(){    
+                            var currentRow=$(this).closest("div.row");
+                            var col1=currentRow.find("div:eq(2)").html();
+                            var studentdata = { idprofesor: col1};
+                            $.ajax({  
+      			                url: "/obtenerIdProfesor",  
+      			                dataType: 'json',  
+      			                type: 'POST',  
+      			                data: studentdata,  
+      			                success: function(data) { 
+                                    location.href='SCSE-Profesor.html';
+      			                }
+    		                });
+                        });			
+      			    }
+    		    });
+            });     
+        </script>          
+    </body>    
+</html>
