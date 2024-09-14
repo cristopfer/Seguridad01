@@ -8,7 +8,9 @@ var mustache = require('mustache');
 var multer  = require('multer');
 const RedisStore = require('connect-redis').default;
 const redis = require('redis');
-const redisClient = redis.createClient();
+const redisClient = redis.createClient({
+    url: 'redis://localhost:10000' // O la URL correcta de tu servidor Redis
+});
 
 var AutenticarModel = require("./models/autenticar");
 var UsuarioModel = require("./models/usuario");
