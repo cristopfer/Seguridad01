@@ -59,7 +59,7 @@ function ActualizarProfesor(idUsuario,nombre,apellido,correo, respuesta){
 
 function ActualizarCurso(idProfesor,curso,descripcion, respuesta){ 
     pool.connect(function(err, client, done) {
-        console.log(idProfesor);
+        console.log("Aqui"+idProfesor);
         client.query("SELECT * FROM actualizar_curso_profesor($1,$2,$3)", [idProfesor,curso,descripcion], function(err,data) {
             done(); 
             if(err){
