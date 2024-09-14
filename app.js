@@ -6,11 +6,6 @@ var path = require("path");
 var engines = require('consolidate');
 var mustache = require('mustache');
 var multer  = require('multer');
-const RedisStore = require('connect-redis').default;
-const redis = require('redis');
-const redisClient = redis.createClient({
-    url: 'redis://localhost:10000' // O la URL correcta de tu servidor Redis
-});
 
 var AutenticarModel = require("./models/autenticar");
 var UsuarioModel = require("./models/usuario");
@@ -30,13 +25,7 @@ var srcpath = path.join(__dirname,'/views');
 
 //app.use(express.static('views'));
 app.use(express.static(__dirname+'/views'));
-//app.use(session({secret:'XASDASDA', resave: true, saveUninitialized: true}));
-app.use(session({
-    store: new RedisStore({ client: redisClient }),
-    secret: 'XASDASDA',  // Cambia por una variable de entorno en producción
-    resave: false,
-    saveUninitialized: false
-  }));
+app.use(session({secret:'XASDASDA', resave: true, saveUninitialized: true}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.engine('html', engines.mustache);
