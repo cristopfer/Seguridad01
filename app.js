@@ -6,6 +6,9 @@ var path = require("path");
 var engines = require('consolidate');
 var mustache = require('mustache');
 var multer  = require('multer');
+var RedisStore = require('connect-redis')(session);
+var redis = require('redis');
+var redisClient = redis.createClient();
 
 var AutenticarModel = require("./models/autenticar");
 var UsuarioModel = require("./models/usuario");
@@ -25,7 +28,13 @@ var srcpath = path.join(__dirname,'/views');
 
 //app.use(express.static('views'));
 app.use(express.static(__dirname+'/views'));
-app.use(session({secret:'XASDASDA', resave: true, saveUninitialized: true}));
+//app.use(session({secret:'XASDASDA', resave: true, saveUninitialized: true}));
+app.use(session({
+    store: new RedisStore({ client: redisClient }),
+    secret: 'XASDASDA',  // Mantenlo en una variable de entorno en producción
+    resave: false,  // Configurado en `false` para evitar reescribir sesiones si no hay cambios
+    saveUninitialized: false  // Configurado en `false` para no guardar sesiones no modificadas
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.engine('html', engines.mustache);
