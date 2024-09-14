@@ -33,7 +33,8 @@ function ConsultarMensajePrivado(idProfesor,respuesta){
         client.query("SELECT * FROM consultar_mensaje_privado_profesor($1)", [idProfesor], function(err,data) {
             done(); 
             if(err){
-                LogModel.ErrorLog("models/comentario.js", "consultar_mensaje_privado_profesor", err.message);
+                //LogModel.ErrorLog("models/comentario.js", "consultar_mensaje_privado_profesor", err.message);
+                console.log(err.message);
             }
             else{
                 respuesta.send(data.rows);
