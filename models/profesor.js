@@ -47,7 +47,8 @@ function ActualizarProfesor(idUsuario,nombre,apellido,correo, respuesta){
         client.query("SELECT * FROM actualizar_datos_profesor($1,$2,$3,$4)", [idUsuario,nombre,apellido,correo], function(err,data) {
             done(); 
             if(err){
-                LogModel.ErrorLog("models/profesor.js", "actualizar_datos_profesor", err.message);
+                console.log(err.message);
+                //LogModel.ErrorLog("models/profesor.js", "actualizar_datos_profesor", err.message);
             }
             else{
                 respuesta.send(data.rows);
