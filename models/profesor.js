@@ -33,7 +33,7 @@ function CalificarProfesor(idProfesor, puntos, respuesta){
         client.query("SELECT * FROM calificar_profesor($1,$2)", [idProfesor,puntos], function(err,data) {
             done(); 
             if(err){
-                LogModel.ErrorLog("models/profesor.js", "consultar_cursos", err.message);
+                console.log(err.message);
             }
             else{
                 respuesta.send(data.rows);
