@@ -9,9 +9,9 @@ var Pool = require('pg-pool');
 };*/
 var config = {
     user: 'cris',
-    database: 'db_servicio_4khl',
-    password: 'YmvkwtJkufMBgQpc3FIC7bmahaBj0841',
-    host: 'dpg-crqe08tsvqrc73ctjdgg-a.oregon-postgres.render.com',
+    database: 'seguridad_db',
+    password: 'LFValkhBPJPGyqzNxXYKY976l1c0Tjnk',
+    host: 'dpg-ct8tdsu8ii6s73cg8rv0-a.oregon-postgres.render.com',
     port: 5432,
     ssl: {
         rejectUnauthorized: false
