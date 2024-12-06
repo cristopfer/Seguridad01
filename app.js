@@ -25,7 +25,14 @@ var srcpath = path.join(__dirname,'/views');
 
 //app.use(express.static('views'));
 app.use(express.static(__dirname+'/views'));
-app.use(session({secret:'XASDASDA', resave: true, saveUninitialized: true}));
+app.use(session({
+    secret: 'XASDASDA', 
+    resave: false, 
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 15 * 60 * 1000 // 15 minutos de inactividad
+    }
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.engine('html', engines.mustache);
