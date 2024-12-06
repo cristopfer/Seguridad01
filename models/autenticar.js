@@ -11,7 +11,7 @@ function IngresarSistemaUsuario(usuario, respuesta) {
         client.query("SELECT password FROM usuarios WHERE username = $1", [usuario.username], function (err, data) {
             done();
             if (err) {
-                LogModel.ErrorLog("models/autenticar", "ingresar_sistema", err.message);
+                console.log(err);
             } else if (data.rows.length === 0) {
                 respuesta.send(JSON.stringify({ estado: 0 })); // Usuario no encontrado
             } else {
