@@ -1,5 +1,5 @@
 var pool = require('./conexion').pool;
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 const saltRounds = 10;
 
 function Autenticar(requerimiento, respuesta, direccion, path) {
