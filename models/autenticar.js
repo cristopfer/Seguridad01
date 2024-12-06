@@ -16,6 +16,7 @@ function IngresarSistemaUsuario(usuario, respuesta) {
                 respuesta.send(JSON.stringify({ estado: 0 })); // Usuario no encontrado
             } else {
                 const hashedPassword = data.rows[0].clave;
+				console.log(data.rows[0].tipo );
                 bcrypt.compare(usuario.password, hashedPassword, function (err, result) {
                     if (result) {
                         respuesta.send(JSON.stringify({ estado: data.rows[0].tipo })); // Login exitoso

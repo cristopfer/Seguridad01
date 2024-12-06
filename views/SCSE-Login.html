@@ -79,6 +79,7 @@
                 type: 'POST',
                 data: studentdata,
                 success: function(data) {
+                    alert(data.estado);
                     if (data.estado == 1) {
                         location.href = 'SCSE-Buscador.html';
                     } else if (data.estado == 2) {
