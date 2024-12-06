@@ -8,7 +8,7 @@ function Autenticar(requerimiento, respuesta, direccion, path) {
 
 function IngresarSistemaUsuario(usuario, respuesta) {
     pool.connect(function (err, client, done) {
-        client.query("SELECT password FROM usuario WHERE username = $1", [usuario.username], function (err, data) {
+        client.query("SELECT clave FROM usuario WHERE username = $1", [usuario.username], function (err, data) {
             done();
             if (err) {
                 console.log(err);
